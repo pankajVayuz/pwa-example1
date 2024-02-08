@@ -5,6 +5,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import Home from "./component/Home";
 import Users from "./component/Users";
 import About from "./component/About";
+import GetLocation from "./component/GetLocation";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
               <Nav.Link>
                 <Link to={"/about"}>About us</Link>
               </Nav.Link>
+              <Nav.Link>
+                <Link to={"/location"}>Get Location</Link>
+              </Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -30,6 +34,7 @@ function App() {
           <Route Component={About} path="/about"></Route>
           <Route Component={Users} path="/users"></Route> 
           <Route Component={Home} path="/"></Route>
+          <Route Component={GetLocation} path="/location"></Route>
         </Routes>
      
     </div>
