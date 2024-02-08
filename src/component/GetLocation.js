@@ -29,7 +29,10 @@ function GetLocation() {
   function getLocation() {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
+//   console.log("check location",locationState,navigator.geolocation.getCurrentPosition())
+
     } else {
+        alert("you are in offline")
       console.log("Geo Location not supported by browser");
     }
   }
@@ -42,6 +45,8 @@ function GetLocation() {
     console.log(location)
     setLocation(location)
   }
+
+  console.log("check location",locationState)
 
   // Function to send message to service worker
  

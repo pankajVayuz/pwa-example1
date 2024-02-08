@@ -1,5 +1,5 @@
 // Register service worker
-this.addEventListener("install", function(event) {
+self.addEventListener("install", function(event) {
   console.log("Service Worker installed");
   let cacheData = "appV1";
   event.waitUntil(
@@ -19,17 +19,13 @@ this.addEventListener("install", function(event) {
   );
 });
 
-this.addEventListener("fetch", (event) => {
-  if(!navigator.onLine){
-      event.respondWith(
-          caches.match(event.request).then((result) => {
-           if(result){
-              return result
-           }
-          })
-        );
-  }
-
+self.addEventListener("fetch", function(event) {
+  console.log("Fetch intercepted for:", event.request.url);
+  event.respondWith(
+    fetch(event.request).catch(function() {
+      return caches.match(event.request);
+    })
+  );
 });
 
 // Listen for messages from the client
