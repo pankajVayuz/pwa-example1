@@ -6,8 +6,21 @@ import Home from "./component/Home";
 import Users from "./component/Users";
 import About from "./component/About";
 import GetLocation from "./component/GetLocation";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [mode, setMode] = useState("online");
+
+  useEffect(() => {
+    const isOnline = navigator.onLine;
+    if (isOnline) {
+     
+    } else {
+     
+      setMode("offline");
+    }
+  }, [])
+  
   return (
     <div className="App">
      
@@ -30,12 +43,17 @@ function App() {
             </Nav>
           </Container>
         </Navbar>
+        <div>
+        {mode === "offline" ? <h1>You are offline</h1> : <h1>You are online</h1>}
+      </div>
         <Routes>
           <Route Component={About} path="/about"></Route>
           <Route Component={Users} path="/users"></Route> 
           <Route Component={Home} path="/"></Route>
           <Route Component={GetLocation} path="/location"></Route>
         </Routes>
+
+      
      
     </div>
   );
